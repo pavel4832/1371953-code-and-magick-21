@@ -10,21 +10,58 @@ const FONT_GAP = 16;
 const BAR_GAP = 50;
 const MAX_BAR_HEIGHT = 150;
 const BAR_WEIGHT = 40;
+const STAT_POSITION_X = CLOUD_X + TEXT_GAP * 2;
+const STAT_POSITION_Y = CLOUD_Y + CLOUD_HEIGHT;
+const STAT_X_GAP = BAR_WEIGHT + BAR_GAP;
 
-let renderCloud = function (ctx, x, y, color) {
+const renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-let getMaxElement = function (arr) {
+const getMaxElement = function (arr) {
   return arr.reduce(function (accumulator, it) {
     return Math.max(accumulator, it);
   }, -Infinity);
 };
 
-let getFillColor = function (element) {
-  const saturation = Math.floor(Math.random() * (100 - 50)) + 50;
-  return (element === `Вы`) ? `rgba(255, 0, 0, 1)` : `hsl(240, ` + saturation + `%, 50%)`;
+const getRandomNumber = function (min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+
+const getFillColor = function (element) {
+  return (element === `Вы`) ? `rgba(255, 0, 0, 1)` : `hsl(240, ` + getRandomNumber(20, 100) + `%, 50%)`;
+};
+
+const drawBarStat = function (ctx, players, times) {
+  const maxTime = getMaxElement(times);
+
+  for (let i = 0; i < players.length; i++) {
+    const barHeight = (MAX_BAR_HEIGHT * times[i]) / maxTime;
+    const time = Math.floor(parseInt(times[i], 10));
+
+    ctx.fillStyle = `#000`;
+    ctx.fillText(
+        players[i],
+        STAT_POSITION_X + STAT_X_GAP * i,
+        STAT_POSITION_Y - CLOUD_GAP * 3
+    );
+
+    ctx.fillStyle = getFillColor(players[i]);
+    ctx.fillRect(
+        STAT_POSITION_X + STAT_X_GAP * i,
+        STAT_POSITION_Y - CLOUD_GAP * 2 - FONT_GAP - barHeight,
+        BAR_WEIGHT,
+        barHeight
+    );
+
+    ctx.fillStyle = `#000`;
+    ctx.fillText(
+        String(time),
+        STAT_POSITION_X + STAT_X_GAP * i,
+        STAT_POSITION_Y - CLOUD_GAP * 2 - FONT_GAP * 2 - barHeight
+    );
+  }
 };
 
 window.renderStatistics = function (ctx, players, times) {
@@ -55,31 +92,5 @@ window.renderStatistics = function (ctx, players, times) {
       CLOUD_Y + CLOUD_GAP + FONT_GAP * 2
   );
 
-  let maxTime = getMaxElement(times);
-
-  for (let i = 0; i < players.length; i++) {
-    ctx.fillStyle = `#000`;
-    ctx.fillText(
-        players[i],
-        CLOUD_X + TEXT_GAP * 2 + (BAR_WEIGHT + BAR_GAP) * i,
-        CLOUD_Y + CLOUD_HEIGHT - CLOUD_GAP * 3
-    );
-
-    ctx.fillStyle = getFillColor(players[i]);
-    const barHeight = (MAX_BAR_HEIGHT * times[i]) / maxTime;
-    ctx.fillRect(
-        CLOUD_X + TEXT_GAP * 2 + (BAR_WEIGHT + BAR_GAP) * i,
-        CLOUD_Y + CLOUD_HEIGHT - CLOUD_GAP * 2 - FONT_GAP - barHeight,
-        BAR_WEIGHT,
-        barHeight
-    );
-
-    ctx.fillStyle = `#000`;
-    const time = Math.floor(parseInt(times[i], 10));
-    ctx.fillText(
-        String(time),
-        CLOUD_X + TEXT_GAP * 2 + (BAR_WEIGHT + BAR_GAP) * i,
-        CLOUD_Y + CLOUD_HEIGHT - CLOUD_GAP * 2 - FONT_GAP * 2 - barHeight
-    );
-  }
+  drawBarStat(ctx, players, times);
 };
