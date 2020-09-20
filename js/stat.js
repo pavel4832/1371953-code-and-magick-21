@@ -13,6 +13,8 @@ const BAR_WEIGHT = 40;
 const STAT_POSITION_X = CLOUD_X + TEXT_GAP * 2;
 const STAT_POSITION_Y = CLOUD_Y + CLOUD_HEIGHT;
 const STAT_X_GAP = BAR_WEIGHT + BAR_GAP;
+const MIN_SATURATION_VALUE = 0;
+const MAX_SATURATION_VALUE = 100;
 
 const renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -30,7 +32,7 @@ const getRandomNumber = function (min, max) {
 };
 
 const getFillColor = function (element) {
-  return (element === `Вы`) ? `rgba(255, 0, 0, 1)` : `hsl(240, ` + getRandomNumber(20, 100) + `%, 50%)`;
+  return (element === `Вы`) ? `rgba(255, 0, 0, 1)` : `hsl(240, ` + getRandomNumber(MIN_SATURATION_VALUE, MAX_SATURATION_VALUE) + `%, 50%)`;
 };
 
 const drawBarStat = function (ctx, players, times) {
