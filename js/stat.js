@@ -27,12 +27,12 @@ const getMaxElement = function (arr) {
   }, -Infinity);
 };
 
-const getRandomNumber = function (min, max) {
+const getRandomSaturation = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
 const getFillColor = function (element) {
-  return (element === `Вы`) ? `rgba(255, 0, 0, 1)` : `hsl(240, ` + getRandomNumber(MIN_SATURATION_VALUE, MAX_SATURATION_VALUE) + `%, 50%)`;
+  return (element === `Вы`) ? `rgba(255, 0, 0, 1)` : `hsl(240, ` + getRandomSaturation(MIN_SATURATION_VALUE, MAX_SATURATION_VALUE) + `%, 50%)`;
 };
 
 const drawBarStat = function (ctx, players, times) {
