@@ -8,7 +8,7 @@ window.GameConstants = {
     }
   },
   Wizard: {
-    speed: WIZARDSpeed || 2,
+    speed: wizardSpeed || 2,
     width: wizardWidth || 61,
     getHeight: getWizardHeight || function (width) {
       return 1.377 * width;
