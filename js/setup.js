@@ -6,6 +6,8 @@ const SETUP_CLOSE = document.querySelector(`.setup-close`);
 const SETUP_USER_NAME = document.querySelector(`.setup-user-name`);
 const FIREBALL_ELEMENT = document.querySelector(`.setup-fireball-wrap`);
 const WIZARD_ELEMENT = document.querySelector(`.setup-wizard-appearance`);
+const COAT_ELEMENT = WIZARD_ELEMENT.querySelector(`.wizard-coat`);
+const EYES_ELEMENT = WIZARD_ELEMENT.querySelector(`.wizard-eyes`);
 const NAMES = [`Иван`, `Хуан Себастьян`, `Мария`, `Кристоф`, `Виктор`, `Юлия`, `Люпита`, `Вашингтон`];
 const SURNAMES = [`да Марья`, `Верон`, `Мирабелла`, `Вальц`, `Онопко`, `Топольницкая`, `Нионго`, `Ирвинг`];
 const COAT_COLORS = [`rgb(101, 137, 164)`, `rgb(241, 43, 107)`, `rgb(146, 100, 161)`, `rgb(56, 159, 117)`, `rgb(215, 210, 55)`, `rgb(0, 0, 0)`];
@@ -18,11 +20,9 @@ const SIMILAR_WIZARD_TEMPLATE = document.querySelector(`#similar-wizard-template
   .querySelector(`.setup-similar-item`);
 
 const onPopupEscPress = function (evt) {
-  if (evt.key === `Escape`) {
-    if (SETUP_USER_NAME !== document.activeElement) {
-      evt.preventDefault();
-      closePopup();
-    }
+  if (evt.key === `Escape` && SETUP_USER_NAME !== document.activeElement) {
+    evt.preventDefault();
+    closePopup();
   }
 };
 
@@ -103,8 +103,8 @@ SETUP_CLOSE.addEventListener(`keydown`, function (evt) {
 });
 
 FIREBALL_ELEMENT.addEventListener(`click`, onFireballClick);
-WIZARD_ELEMENT.querySelector(`.wizard-coat`).addEventListener(`click`, onCoatClick);
-WIZARD_ELEMENT.querySelector(`.wizard-eyes`).addEventListener(`click`, onEyesClick);
+COAT_ELEMENT.addEventListener(`click`, onCoatClick);
+EYES_ELEMENT.addEventListener(`click`, onEyesClick);
 
 const WIZARDS = getWizards();
 
