@@ -5,6 +5,7 @@
   const DIALOG_HANDLE = USER_DIALOG.querySelector('.upload');
   const SETUP_OPEN = document.querySelector(`.setup-open`);
   const SETUP_CLOSE = document.querySelector(`.setup-close`);
+  const FORM =  document.querySelector(`.setup-wizard-form`);
   const SETUP_USER_NAME = document.querySelector(`.setup-user-name`);
   const WIZARD_ELEMENT = document.querySelector(`.setup-wizard-appearance`);
   const FIREBALL_ELEMENT = document.querySelector(`.setup-fireball-wrap`);
@@ -99,4 +100,11 @@
   window.colorize(FIREBALL_ELEMENT, FIREBALL_COLORS);
   window.colorize(COAT_ELEMENT, COAT_COLORS);
   window.colorize(EYES_ELEMENT, EYES_COLORS);
+
+  FORM.addEventListener(`submit`, function (evt) {
+    window.backend.upload(new FormData(FORM), function () {
+      USER_DIALOG.classList.add(`hidden`);
+    });
+    evt.preventDefault();
+  });
 })();
