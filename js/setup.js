@@ -47,5 +47,5 @@
     USER_DIALOG.querySelector(`.setup-similar`).classList.remove(`hidden`);
   };
 
-  window.backend.load(successHandler, errorHandler);
+  window.load(successHandler, errorHandler);
 })();
