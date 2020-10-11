@@ -102,7 +102,7 @@
   window.colorize(EYES_ELEMENT, EYES_COLORS);
 
   FORM.addEventListener(`submit`, function (evt) {
-    window.upload(new FormData(FORM), function () {
+    window.backend.upload(new FormData(FORM), function () {
       USER_DIALOG.classList.add(`hidden`);
     });
     evt.preventDefault();
