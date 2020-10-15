@@ -40,15 +40,15 @@
     }));
   };
 
-  window.wizard.setEyesChangeHandler(function (color) {
+  window.colorize.setEyesChangeHandler(window.debounce(function (color) {
     eyesColor = color;
     updateWizards();
-  });
+  }));
 
-  window.wizard.setCoatChangeHandler(function (color) {
+  window.colorize.setCoatChangeHandler(window.debounce(function (color) {
     coatColor = color;
     updateWizards();
-  });
+  }));
 
   const errorHandler = function (errorMessage) {
     window.util.createErrorMessage(errorMessage);
@@ -59,7 +59,7 @@
     updateWizards();
   };
 
-  window.colorize(FIREBALL_ELEMENT, FIREBALL_COLORS);
+  window.colorize.setColor(FIREBALL_ELEMENT, FIREBALL_COLORS);
 
   window.backend.load(successHandler, errorHandler);
 })();
