@@ -7,13 +7,6 @@
   const SETUP_CLOSE = document.querySelector(`.setup-close`);
   const FORM = document.querySelector(`.setup-wizard-form`);
   const SETUP_USER_NAME = document.querySelector(`.setup-user-name`);
-  const WIZARD_ELEMENT = document.querySelector(`.setup-wizard-appearance`);
-  const FIREBALL_ELEMENT = document.querySelector(`.setup-fireball-wrap`);
-  const COAT_ELEMENT = WIZARD_ELEMENT.querySelector(`.wizard-coat`);
-  const EYES_ELEMENT = WIZARD_ELEMENT.querySelector(`.wizard-eyes`);
-  const FIREBALL_COLORS = [`#ee4830`, `#30a8ee`, `#5ce6c0`, `#e848d5`, `#e6e848`];
-  const COAT_COLORS = [`rgb(101, 137, 164)`, `rgb(241, 43, 107)`, `rgb(146, 100, 161)`, `rgb(56, 159, 117)`, `rgb(215, 210, 55)`, `rgb(0, 0, 0)`];
-  const EYES_COLORS = [`black`, `red`, `blue`, `yellow`, `green`];
   const START_X_POSITION = 50;
   const START_Y_POSITION = 80;
 
@@ -97,12 +90,8 @@
     document.addEventListener(`mouseup`, onMouseUp);
   });
 
-  window.colorize(FIREBALL_ELEMENT, FIREBALL_COLORS);
-  window.colorize(COAT_ELEMENT, COAT_COLORS);
-  window.colorize(EYES_ELEMENT, EYES_COLORS);
-
   FORM.addEventListener(`submit`, function (evt) {
-    window.upload(new FormData(FORM), function () {
+    window.backend.upload(new FormData(FORM), function () {
       USER_DIALOG.classList.add(`hidden`);
     });
     evt.preventDefault();
