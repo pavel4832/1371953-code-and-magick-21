@@ -1,8 +1,8 @@
 'use strict';
 
 const FILE_TYPES = [`gif`, `jpg`, `jpeg`, `png`];
-const FILE_CHOOSER = document.querySelector('.upload input[type=file]');
-const PREVIEW = document.querySelector('.setup-user-pic');
+const FILE_CHOOSER = document.querySelector(`.upload input[type=file]`);
+const PREVIEW = document.querySelector(`.setup-user-pic`);
 
 FILE_CHOOSER.addEventListener(`change`, function () {
   const FILE = FILE_CHOOSER.files[0];
