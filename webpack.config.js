@@ -9,6 +9,7 @@ module.exports = {
     `./js/colorize.js`,
     `./js/wizard.js`,
     `./js/render.js`,
+    `./js/avatar.js`,
     `./js/setup.js`,
     `./js/dialog.js`
   ],
