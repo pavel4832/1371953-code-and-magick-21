@@ -1,6 +1,6 @@
 'use strict';
 
-const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+const FILE_TYPES = [`gif`, `jpg`, `jpeg`, `png`];
 const FILE_CHOOSER = document.querySelector('.upload input[type=file]');
 const PREVIEW = document.querySelector('.setup-user-pic');
 
